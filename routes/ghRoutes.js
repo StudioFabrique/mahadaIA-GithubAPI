@@ -17,7 +17,7 @@ router.get('/showuser',userReposController.showUser);
 router.get('/ghRepos', userReposController.getRepos);
 router.post('/ghUpdateUser', userReposController.updateUser);
 router.get('/ghEvents', userReposController.getGhEvents);
-router.get('/ghUsers', userReposController.getGhUsers);
+router.get('/showUser', userReposController.getGhUser);
 
 
 return router;

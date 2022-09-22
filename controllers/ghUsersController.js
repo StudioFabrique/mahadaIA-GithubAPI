@@ -245,9 +245,12 @@ exports.getGhRepos = async (req, res, next) => {
         next();
     }
 }
-exports.getGhUsers = async ( req, res, next ) => {
+exports.getGhUser = async ( req, res, next ) => {
+
+    const user = req.body.user
+
     try {
-        const usersGh = await UsersGh.find({});
+        const usersGh = await UsersGh.findOne({nomGh: user});
         res.json(usersGh);
         
     } catch (error) {
