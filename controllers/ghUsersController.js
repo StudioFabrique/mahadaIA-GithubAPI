@@ -72,7 +72,7 @@ exports.getGhUsers = async (req, res, next) => {
         })
 
         // ReposGh.insertMany(reposArray)
-        console.log(reposArray.length)
+        // console.log(reposArray.length)
 
         //*Busqueda de eventos por usuario
         //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -97,7 +97,7 @@ exports.getGhUsers = async (req, res, next) => {
             // eventOwnerId = e.actor.id
 
         })
-        console.log(eventsArray.length)
+        // console.log(eventsArray.length)
         // EventsGh.insertMany(eventsArray)
 
 
@@ -142,11 +142,11 @@ exports.getGhUsers = async (req, res, next) => {
     }
 }
 
-exports.showUser = async (req, res, next) => {
+exports.showUsers = async (req, res, next) => {
     try {
         const user = await UsersGh.find({}).populate('reposRef').populate('eventsRef');
         res.json(user);
-        console.log(user)
+        // console.log(user)
     } catch (error) {
         console.log(error);
         next();
@@ -173,8 +173,8 @@ exports.updateUser = async (req, res, next) => {
         )
         // console.log(eventsDb)
         // console.log(reposDb)
-        console.log(evMap)
-        console.log(rpMap)
+        // console.log(evMap)
+        // console.log(rpMap)
 
             // ! TEST UPDATE & INSERT REF IN USER
             const update = {"eventsRef":evMap, "reposRef":rpMap}
@@ -185,7 +185,7 @@ exports.updateUser = async (req, res, next) => {
 
         
         res.json(user);
-        console.log(user)
+        // console.log(user)
     } catch (error) {
         console.log(error);
         next();
