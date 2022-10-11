@@ -1,5 +1,6 @@
 const express = require('express');
 const { dbConnection } = require('./db/config');
+const cors = require('cors');
 const routes = require('./routes/ghRoutes');
 const { PORT } = require('./config')
 
@@ -11,6 +12,7 @@ dbConnection();
 
 const app = express();
 app.use( express.json());
+app.use( cors() );
 app.use( express.urlencoded({extended:true}));
 app.use('/', routes());
 
