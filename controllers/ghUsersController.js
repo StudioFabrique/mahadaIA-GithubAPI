@@ -247,10 +247,10 @@ exports.getGhRepos = async (req, res, next) => {
 }
 exports.getGhUser = async ( req, res, next ) => {
 
-    const user = req.body.user
-
+    const etu = req.params._id;
+    
     try {
-        const usersGh = await UsersGh.findOne({nomGh: user});
+        const usersGh = await UsersGh.findById(etu).populate('reposRef').populate('eventsRef');
         res.json(usersGh);
         
     } catch (error) {
