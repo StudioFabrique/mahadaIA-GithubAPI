@@ -247,7 +247,7 @@ exports.getGhRepos = async (req, res, next) => {
 }
 exports.getGhUser = async ( req, res, next ) => {
 
-    const etu = req.params._id;
+    const etu = req.params;
     
     try {
         const usersGh = await UsersGh.findById(etu).populate('reposRef').populate('eventsRef');
