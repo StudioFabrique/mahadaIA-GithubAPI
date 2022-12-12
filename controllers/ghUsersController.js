@@ -17,7 +17,7 @@ exports.getGhUsers = async (req, res, next) => {
 
         const userFetch = await fetch(`https://api.github.com/users/${user}`, {
             headers: {
-                auth: `Bearer 52b1aef096788321c6c8a00c836e76621d94606b`
+                auth: `token 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`
             }
         });
         const data = await userFetch.json();
@@ -45,7 +45,7 @@ exports.getGhUsers = async (req, res, next) => {
 
         const repos = await fetch(`https://api.github.com/users/${user}/repos?per_page=100?`, {
             headers: {
-                auth: `Bearer 52b1aef096788321c6c8a00c836e76621d94606b`
+                auth: `token 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`
             }
         });
         const reposData = await repos.json();
@@ -70,7 +70,7 @@ exports.getGhUsers = async (req, res, next) => {
             repoOwnerId = r.owner.id
             repos_id.push(r.id);
         })
-
+        
         // ReposGh.insertMany(reposArray)
         // console.log(reposArray.length)
 
@@ -78,7 +78,7 @@ exports.getGhUsers = async (req, res, next) => {
         //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         const userEvents = await fetch(`https://api.github.com/users/${user}/events?per_page=100`, {
             headers: {
-                auth: `Bearer 52b1aef096788321c6c8a00c836e76621d94606b`
+                auth: `token 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`
             }
         });
         const eventsData = await userEvents.json();
@@ -273,6 +273,24 @@ exports.getRepos = async ( req, res, next ) => {
         const userRepos = await UserRepos.find({});
         res.json(userRepos);
         
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+}
+
+exports.getMetric = async ( req, res, next ) => {
+    const user = req.params.user;
+    const repo = req.params.repo;
+    try {
+        const userFetch = await fetch(`https://api.github.com/repos/${user}/${repo}/stats/participation`,{
+            headers: {
+                auth: ` token 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`
+            }
+        }
+        );
+        const data = await userFetch.json();
+        res.send(data)
     } catch (error) {
         console.log(error);
         next();
