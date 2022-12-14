@@ -285,7 +285,7 @@ exports.getMetric = async ( req, res, next ) => {
     try {
         const userFetch = await fetch(`https://api.github.com/repos/${user}/${repo}/stats/participation`,{
             headers: {
-                Authorization: `token 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`
+                Authorization: `token ${process.env.ghApp}`
             }
         }
         );
