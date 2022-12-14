@@ -17,7 +17,7 @@ exports.getGhUsers = async (req, res, next) => {
 
         const userFetch = await fetch(`https://api.github.com/users/${user}`, {
             headers: {
-                auth: `token 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`
+                auth: `token ${process.env.ghApp}`
             }
         });
         const data = await userFetch.json();
@@ -45,7 +45,7 @@ exports.getGhUsers = async (req, res, next) => {
 
         const repos = await fetch(`https://api.github.com/users/${user}/repos?per_page=100?`, {
             headers: {
-                auth: `token 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`
+                auth: `token ${process.env.ghApp}`
             }
         });
         const reposData = await repos.json();
@@ -78,7 +78,7 @@ exports.getGhUsers = async (req, res, next) => {
         //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         const userEvents = await fetch(`https://api.github.com/users/${user}/events?per_page=100`, {
             headers: {
-                auth: `token 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`
+                auth: `token ${process.env.ghApp}`
             }
         });
         const eventsData = await userEvents.json();
@@ -285,11 +285,12 @@ exports.getMetric = async ( req, res, next ) => {
     try {
         const userFetch = await fetch(`https://api.github.com/repos/${user}/${repo}/stats/participation`,{
             headers: {
-                auth: ` token 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`
+                Authorization: `token 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`
             }
         }
         );
         const data = await userFetch.json();
+        console.log(data)
         res.send(data)
     } catch (error) {
         console.log(error);
