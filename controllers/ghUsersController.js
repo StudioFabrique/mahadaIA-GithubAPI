@@ -104,14 +104,11 @@ exports.getGhUsers = async (req, res, next) => {
         //*Comparativa de coleciones y creacion de referencias repo y event
         //*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        
      
         // console.log(reposDb)
 
         // console.log(evMap)
         // console.log(rpMap)
-
-
 
         //* Creacion del usuario e insericon de los datos en mongo
         //*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -210,7 +207,6 @@ exports.getGhRepos = async (req, res, next) => {
         const respuesta = await fetch(`https://api.github.com/users/AlaaAD86/repos`);
 
         const data = await respuesta.json();
-        // console.log(data);
         let repos = [];
 
         await data.forEach(r => {
@@ -289,8 +285,8 @@ exports.getMetric = async ( req, res, next ) => {
             }
         }
         );
+        
         const data = await userFetch.json();
-        console.log(data)
         res.send(data)
     } catch (error) {
         console.log(error);
